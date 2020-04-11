@@ -1,0 +1,22 @@
+{
+    "name": "@sagredoismael/navigation_rn",
+    "version": "1.0.0",
+    "description": "Basic navigation implementation for react native projects",
+    "license": "MIT",
+    "repository": "SagredoIsmael/navigation_rn",
+    "main": "index.js",
+    "keywords": [
+        "navigation",
+        "basic navigation",
+        "react native"
+    ],
+    "dependencies": {
+        "@react-navigation/native": "^5.1.5",
+        "react-native-reanimated": "^1.8.0",
+        "react-native-gesture-handler": "^1.6.1",
+        "react-native-screens": "^2.4.0",
+        "react-native-safe-area-context": "^0.7.3",
+        "@react-native-community/masked-view": "^0.1.8",
+        "@react-navigation/stack": "^5.2.10"
+      }
+}
