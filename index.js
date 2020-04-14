@@ -6,11 +6,13 @@ import isArray from 'lodash/isArray'
 import map from 'lodash/map'
 import size from 'lodash/size'
 
+export const navigationRef = React.createRef()
+
 const Stack = createStackNavigator()
 
 const NavigationWrapper = ({ screens, headerCommonsOptions }) =>
   isArray(screens) && size(screens) > 0 &&
-  < NavigationContainer >
+  < NavigationContainer ref={navigationRef} >
     <Stack.Navigator initialRouteName={screens[0].name} screenOptions={headerCommonsOptions && headerCommonsOptions}>
       {map(screens, itemScreen =>
         <Stack.Screen key={itemScreen.name} name={itemScreen.name} component={itemScreen.component} options={itemScreen.options} />
