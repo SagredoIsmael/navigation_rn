@@ -12,6 +12,7 @@ export default WrappedComponent => {
     }
 
     return connect( 
+        null,
         mapDispatchToProps
     )(WrappedComponent)
 }
