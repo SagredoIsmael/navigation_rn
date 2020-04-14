@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import isArray from 'lodash/isArray'
 import map from 'lodash/map'
 import size from 'lodash/size'
+export {default as connectNavigation} from './HOC'
 
 export const navigationRef = React.createRef()
 
@@ -22,3 +23,4 @@ const NavigationWrapper = ({ screens, headerCommonsOptions }) =>
 
 
 export default NavigationWrapper
+
