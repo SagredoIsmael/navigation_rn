@@ -27,7 +27,7 @@ export const toggleDrawer = () => () => {
   navigationRef.current?.dispatch(DrawerActions.toggleDrawer())
 }
 
-export const navigateInTabs = (tabName) => () =>
+export const navigateInTabs = (tabName, params = {}) => () =>
   navigationRef.current?.dispatch(
     TabActions.jumpTo(
       tabName, params

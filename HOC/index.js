@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { navigate, goBack, reset, toggleDrawer, openDrawer, closeDrawer } from '../actions'
+import { navigate, goBack, reset, toggleDrawer, openDrawer, closeDrawer, navigateInTabs } from '../actions'
 
 export default WrappedComponent => {
     const mapDispatchToProps = {
@@ -9,6 +9,7 @@ export default WrappedComponent => {
         toggleDrawer,
         openDrawer,
         closeDrawer,
+        navigateInTabs
     }
 
     return connect( 
