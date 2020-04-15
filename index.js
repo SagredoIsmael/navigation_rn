@@ -16,33 +16,36 @@ const Stack = createStackNavigator()
 const Drawer = createDrawerNavigator()
 const Tab = createBottomTabNavigator()
 
-const NavigationWrapper = ({ hasDrawer, screens, headerCommonsOptions }) =>
+const NavigationWrapper = ({ screens, headerCommonsOptions }) =>
   isArray(screens) && size(screens) > 0 &&
   < NavigationContainer ref={navigationRef}>
-    {hasDrawer ?
-      <DrawerNavigator screens={screens} headerCommonsOptions={headerCommonsOptions} />
-      :
-      <StackNavigator screens={screens} headerCommonsOptions={headerCommonsOptions} />
-    }
+    <StackNavigator screens={screens} headerCommonsOptions={headerCommonsOptions} />
   </NavigationContainer >
 
 
 const StackNavigator = ({ screens, headerCommonsOptions }) =>
   <Stack.Navigator initialRouteName={screens[0].name} screenOptions={headerCommonsOptions && headerCommonsOptions}>
     {map(screens, itemScreen => {
-      const TabScreen = props => itemScreen.tabs && <TabNavigator {...props}
+      const DrawerScreen = props => itemScreen.hasDrawer && <DrawerNavigator {...props}
+        screen={itemScreen.component} headerCommonsOptions={headerCommonsOptions} />
+
+      const TabScreen = props => screen.tabs && <TabNavigator {...props}
         tabs={itemScreen.tabs} commonOptions={itemScreen.tabCommonOptions} />
+
       return <Stack.Screen key={itemScreen.name} name={itemScreen.name}
-        component={itemScreen.tabs ? TabScreen : itemScreen.component} options={itemScreen.options} />
+        component={itemScreen.hasDrawer ? DrawerScreen : itemScreen.tabs ? TabScreen : itemScreen.component}
+        options={itemScreen.options} />
     })}
   </Stack.Navigator>
 
 
-const DrawerNavigator = ({ screens, headerCommonsOptions }) => {
-  const StackScreen = props => <StackNavigator {...props} screens={screens} headerCommonsOptions={headerCommonsOptions} />
+const DrawerNavigator = ({ screen }) => {
+  const TabScreen = props => screen.tabs && <TabNavigator {...props}
+    tabs={screen.tabs} commonOptions={screen.tabCommonOptions} />
+
   return (
-    <Drawer.Navigator initialRouteName={'DRAWER' + screens[0].name}>
-      <Drawer.Screen name={'DRAWER' + screens[0].name} component={StackScreen} />
+    <Drawer.Navigator initialRouteName={'DRAWER' + screen.name}>
+      <Drawer.Screen name={'DRAWER' + screen.name} component={screen.tabs ? TabScreen : screen.component} />
     </Drawer.Navigator>
   )
 }
@@ -62,12 +65,14 @@ const TabNavigator = ({ tabs, commonOptions }) =>
     )}
   </Tab.Navigator>
 
+
 const TabIcon = ({ tabs, route }) =>
   map(tabs, tabScreen => {
     if (tabScreen.name == route.name && tabScreen.icon)
       return <Icon key={tabScreen.icon} name={tabScreen.icon} size={tabScreen.iconSize ? tabScreen.iconSize : 30}
         color={tabScreen.iconColor ? tabScreen.iconColor : 'black'} />
   })
+  
 
 export default NavigationWrapper
 
