@@ -1,6 +1,6 @@
 {
     "name": "@sagredoismael/navigation_rn",
-    "version": "1.0.05",
+    "version": "1.0.09",
     "description": "Basic navigation implementation for react native projects",
     "license": "MIT",
     "repository": "SagredoIsmael/navigation_rn",
@@ -15,7 +15,6 @@
         "@react-navigation/bottom-tabs": "^5.2.6",
         "@react-navigation/drawer": "^5.4.1",
         "@react-navigation/stack": "^5.2.10",
-        "react-native-vector-icons": "^6.6.0",
         "lodash": "^4.17.15"
     }
 }
