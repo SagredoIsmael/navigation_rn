@@ -27,9 +27,9 @@ const StackNavigator = ({ screens, headerCommonsOptions }) =>
   <Stack.Navigator initialRouteName={screens[0].name} screenOptions={headerCommonsOptions && headerCommonsOptions}>
     {map(screens, itemScreen => {
       const DrawerScreen = props => itemScreen.hasDrawer && <DrawerNavigator {...props}
-        screen={itemScreen.component} headerCommonsOptions={headerCommonsOptions} />
+        screen={itemScreen} commonOptions={itemScreen.tabCommonOptions} />
 
-      const TabScreen = props => screen.tabs && <TabNavigator {...props}
+      const TabScreen = props => itemScreen.tabs && <TabNavigator {...props}
         tabs={itemScreen.tabs} commonOptions={itemScreen.tabCommonOptions} />
 
       return <Stack.Screen key={itemScreen.name} name={itemScreen.name}
@@ -39,13 +39,13 @@ const StackNavigator = ({ screens, headerCommonsOptions }) =>
   </Stack.Navigator>
 
 
-const DrawerNavigator = ({ screen }) => {
+const DrawerNavigator = ({ screen, commonOptions }) => {
   const TabScreen = props => screen.tabs && <TabNavigator {...props}
-    tabs={screen.tabs} commonOptions={screen.tabCommonOptions} />
+    tabs={screen.tabs} commonOptions={commonOptions} />
 
   return (
-    <Drawer.Navigator initialRouteName={'DRAWER' + screen.name}>
-      <Drawer.Screen name={'DRAWER' + screen.name} component={screen.tabs ? TabScreen : screen.component} />
+    <Drawer.Navigator initialRouteName={screen.name}>
+      <Drawer.Screen name={screen.name} component={screen.tabs ? TabScreen : screen.component} />
     </Drawer.Navigator>
   )
 }
