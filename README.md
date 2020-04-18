@@ -75,7 +75,22 @@ const AppWithNavigation = () =>
   {
     name: 'second', //MANDATORY
     component: Screen2, //MANDATORY OR OPTIONAL IF ADD TABS
-    hasDrawer: true, //OPTIONAL (default false)
+    hasDrawer: true, //OPTIONAL (default false),
+    drawerProps: {  //OPTIONAL
+      drawerPosition: "left",
+      /* ...all props: https://reactnavigation.org/docs/drawer-navigator/ */
+    },
+    drawerItems: [  //OPTIONAL
+      {
+        label:"Profile",
+        onPress: function(){console.log("press Profile")}
+      },
+      {
+        label:"Help",
+        onPress: function(){console.log("press Help")}
+      }
+      /* ...all props: https://reactnavigation.org/docs/drawer-navigator/ */
+    ],
     tabs: [  //OPTIONAL
       {
         name: 'SCREEN1',  //MANDATORY
