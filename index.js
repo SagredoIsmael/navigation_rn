@@ -2,7 +2,7 @@ import 'react-native-gesture-handler'
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { createDrawerNavigator } from '@react-navigation/drawer'
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import isArray from 'lodash/isArray'
 import map from 'lodash/map'
@@ -43,12 +43,21 @@ const DrawerNavigator = ({ screen, commonOptions }) => {
   const TabScreen = props => screen.tabs && <TabNavigator {...props}
     tabs={screen.tabs} commonOptions={commonOptions} />
 
+  const DrawerItems = props => <CustomDrawerContent {...props} items={screen.drawerItems} />
+
   return (
-    <Drawer.Navigator initialRouteName={screen.name}>
+    <Drawer.Navigator initialRouteName={screen.name} {...screen.drawerProps} drawerContent={screen.drawerItems && DrawerItems}>
       <Drawer.Screen name={screen.name} component={screen.tabs ? TabScreen : screen.component} />
     </Drawer.Navigator>
   )
 }
+
+const CustomDrawerContent = ({ items }) =>
+  <DrawerContentScrollView >
+    {map(items, drawerItem => 
+      <DrawerItem key={drawerItem.label} {...drawerItem}/>
+    )}
+  </DrawerContentScrollView>
 
 
 const TabNavigator = ({ tabs, commonOptions }) =>
@@ -72,7 +81,7 @@ const TabIcon = ({ tabs, route }) =>
       return <Icon key={tabScreen.icon} name={tabScreen.icon} size={tabScreen.iconSize ? tabScreen.iconSize : 30}
         color={tabScreen.iconColor ? tabScreen.iconColor : 'black'} />
   })
-  
+
 
 export default NavigationWrapper
 
