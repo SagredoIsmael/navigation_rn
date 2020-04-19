@@ -1,5 +1,5 @@
 import { CommonActions, DrawerActions, TabActions } from '@react-navigation/native'
-import { navigationRef } from '../index'
+import { navigationRef } from '../navigation/index'
 
 export const navigate = (routeName, params = {}) => () => {
   navigationRef.current?.dispatch(
