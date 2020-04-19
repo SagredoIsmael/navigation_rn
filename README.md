@@ -19,9 +19,9 @@ You can see all this dependencies in his documentation ('Getting started'):
 https://reactnavigation.org/docs/getting-started
 
 
-## **Prerequisite if you want to use icons in tabs**
+## **Prerequisite for use icons in tabs**
 
-If you want to use icons in tabs, you have to add this package to your project:
+You have to add this package to your project for use icons in tabs or custom drawer.
 
 https://github.com/oblador/react-native-vector-icons  
 
