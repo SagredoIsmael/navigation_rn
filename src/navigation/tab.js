@@ -8,19 +8,25 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 const Tab = createBottomTabNavigator()
 
 
-export default ({ tabs, commonOptions }) =>
-  isArray(tabs) && size(tabs) > 0 &&
-  <Tab.Navigator tabBarOptions={commonOptions}
-    screenOptions={({ route }) => {
-      const TabIconWithProps = () => <TabIcon route={route} tabs={tabs} />
-      return ({
-        tabBarIcon: TabIconWithProps
-      })
-    }}>
-    {map(tabs, tabScreen =>
-      <Tab.Screen key={tabScreen.name} name={tabScreen.name} component={tabScreen.component} />
-    )}
-  </Tab.Navigator>
+export default ({ route }) => {
+  const tabs = route.params?.tabs
+  const commonOptions = route.params?.commonOptions
+  return (
+    isArray(tabs) && size(tabs) > 0 &&
+    <Tab.Navigator tabBarOptions={commonOptions}
+      screenOptions={({ route }) => {
+        const TabIconWithProps = props => <TabIcon {...props} route={route} tabs={tabs} />
+        return ({
+          tabBarIcon: TabIconWithProps
+        })
+      }}>
+      {map(tabs, tabScreen =>
+        <Tab.Screen key={tabScreen.name} name={tabScreen.name} component={tabScreen.component} />
+      )}
+    </Tab.Navigator>
+  )
+}
+
 
 
 const TabIcon = ({ tabs, route }) =>

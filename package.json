@@ -1,6 +1,6 @@
 {
     "name": "@sagredoismael/navigation_rn",
-    "version": "1.0.15",
+    "version": "1.0.16",
     "description": "Basic navigation implementation for react native projects",
     "license": "MIT",
     "repository": "SagredoIsmael/navigation_rn",
