@@ -9,10 +9,10 @@ const Stack = createStackNavigator()
 export default ({ screens, headerCommonsOptions }) =>
   <Stack.Navigator initialRouteName={screens[0].name} screenOptions={headerCommonsOptions && headerCommonsOptions}>
     {map(screens, itemScreen => {
-      const DrawerScreen = props => itemScreen.hasDrawer && <DrawerNavigator {...props}
+      const DrawerScreen = () => itemScreen.hasDrawer && <DrawerNavigator
         screen={itemScreen} commonOptions={itemScreen.tabCommonOptions} />
 
-      const TabScreen = props => itemScreen.tabs && <TabNavigator {...props}
+      const TabScreen = () => itemScreen.tabs && <TabNavigator
         tabs={itemScreen.tabs} commonOptions={itemScreen.tabCommonOptions} />
 
       return <Stack.Screen key={itemScreen.name} name={itemScreen.name}

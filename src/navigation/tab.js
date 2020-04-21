@@ -12,7 +12,7 @@ export default ({ tabs, commonOptions }) =>
   isArray(tabs) && size(tabs) > 0 &&
   <Tab.Navigator tabBarOptions={commonOptions}
     screenOptions={({ route }) => {
-      const TabIconWithProps = props => <TabIcon {...props} route={route} tabs={tabs} />
+      const TabIconWithProps = () => <TabIcon route={route} tabs={tabs} />
       return ({
         tabBarIcon: TabIconWithProps
       })
