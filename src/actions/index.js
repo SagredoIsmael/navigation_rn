@@ -1,7 +1,7 @@
 import { CommonActions, DrawerActions, TabActions } from '@react-navigation/native'
 import { navigationRef } from '../navigation/index'
 
-export const navigate = (routeName, params = {}) => () => {
+export const navigate = (routeName, params = {}) => {
   navigationRef.current?.dispatch(
     CommonActions.navigate({
       name: routeName,
@@ -10,7 +10,7 @@ export const navigate = (routeName, params = {}) => () => {
   )
 }
 
-export const goBack = () => () => {
+export const goBack = () => {
   navigationRef.current?.dispatch(CommonActions.goBack())
 }
 
@@ -23,11 +23,11 @@ export const reset = (routeName, params = {}) => {
   )
 }
 
-export const toggleDrawer = () => () => {
+export const toggleDrawer = () => {
   navigationRef.current?.dispatch(DrawerActions.toggleDrawer())
 }
 
-export const navigateInTabs = (tabName, params = {}) => () =>
+export const navigateInTabs = (tabName, params = {}) =>
   navigationRef.current?.dispatch(
     TabActions.jumpTo(
       tabName, params
